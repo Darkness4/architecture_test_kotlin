@@ -1,9 +1,9 @@
 package org.example.data.datasources
 
+import com.google.inject.Inject
+import com.google.inject.Singleton
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
-import javax.inject.Inject
-import javax.inject.Singleton
 import org.example.data.models.RepoModel
 
 interface GithubLocalDataSource {

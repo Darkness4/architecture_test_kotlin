@@ -1,7 +1,8 @@
 package org.example.core.connectivity
 
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.subjects.PublishSubject
+import io.reactivex.rxjava3.subjects.BehaviorSubject
+import javax.inject.Singleton
 
 interface Connectivity {
     val isOnline: Observable<Boolean>
@@ -9,8 +10,9 @@ interface Connectivity {
     fun setOffline()
 }
 
+@Singleton
 class ConnectivityImpl : Connectivity {
-    override val isOnline: PublishSubject<Boolean> = PublishSubject.create<Boolean>()
+    override val isOnline: BehaviorSubject<Boolean> = BehaviorSubject.createDefault(true)
 
     override fun setOnline() = isOnline.onNext(true)
 

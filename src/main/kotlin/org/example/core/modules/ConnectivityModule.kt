@@ -1,14 +1,13 @@
 package org.example.core.modules
 
-import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
+import com.google.inject.AbstractModule
+import com.google.inject.Provides
+import com.google.inject.Singleton
 import org.example.core.connectivity.Connectivity
 import org.example.core.connectivity.ConnectivityImpl
 
-@Module
-class ConnectivityModule {
+class ConnectivityModule: AbstractModule() {
     @Provides
     @Singleton
-    fun provideConnectivity(): Connectivity = ConnectivityImpl()
+    fun provideConnectivity(impl: ConnectivityImpl): Connectivity = impl
 }

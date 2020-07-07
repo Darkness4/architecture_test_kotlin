@@ -1,15 +1,14 @@
 package org.example.core.modules
 
-import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
+import com.google.inject.AbstractModule
+import com.google.inject.Provides
+import com.google.inject.Singleton
 import org.example.data.datasources.GithubRemoteDataSource
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-@Module
-class RetrofitModule {
+class RetrofitModule: AbstractModule() {
     @Provides
     @Singleton
     fun provideGithubRemoteDataSource(): GithubRemoteDataSource {

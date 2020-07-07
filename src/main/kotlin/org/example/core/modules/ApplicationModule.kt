@@ -1,17 +1,16 @@
 package org.example.core.modules
 
-import dagger.Binds
-import dagger.Module
+import com.google.inject.AbstractModule
+import com.google.inject.Provides
 import org.example.data.datasources.GithubLocalDataSource
 import org.example.data.datasources.GithubLocalDataSourceImpl
 import org.example.data.repositories.RepoRepositoryImpl
 import org.example.domain.repositories.RepoRepository
 
-@Module
-abstract class ApplicationModule {
-    @Binds
-    abstract fun provideGithubLocalDataSource(githubLocalDataSource: GithubLocalDataSourceImpl): GithubLocalDataSource
+class ApplicationModule: AbstractModule() {
+    @Provides
+    fun provideGithubLocalDataSource(impl: GithubLocalDataSourceImpl): GithubLocalDataSource = impl
 
-    @Binds
-    abstract fun provideRepoRepository(repositoryImpl: RepoRepositoryImpl): RepoRepository
+    @Provides
+    fun provideRepoRepository(impl: RepoRepositoryImpl): RepoRepository = impl
 }
