@@ -21,10 +21,6 @@ class GithubView : View() {
             column("Owner", Repo::ownerProperty)
         }
 
-        controller.repos.addListener { _: Observable ->
-            tableView.resizeColumnsToFitContent()
-        }
-
         controller.findRepoByUser("Darkness4")
     }
 

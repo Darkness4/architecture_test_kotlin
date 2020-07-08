@@ -4,22 +4,22 @@ import io.reactivex.rxjava3.disposables.Disposable
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import org.example.domain.entities.Repo
-import org.example.domain.usecases.FetchRepoByUser
+import org.example.domain.usecases.FetchReposByUser
 import tornadofx.Controller
 
 class GithubController : Controller() {
-    private val fetchRepoByUser: FetchRepoByUser by di()
+    private val fetchReposByUser: FetchReposByUser by di()
     val repos: ObservableList<Repo> = FXCollections.observableArrayList<Repo>()
     private var d: Disposable? = null
 
     fun findRepoByUser(user: String) {
         d?.dispose()
-        d = fetchRepoByUser(user).subscribe(
-            { newRepos ->
+        d = fetchReposByUser(user).subscribe(
+            {
                 repos.clear()
-                repos.addAll(newRepos)
+                repos.addAll(it)
             },
-            { err -> println(err) }
+            { println(it) }
         )
     }
 
